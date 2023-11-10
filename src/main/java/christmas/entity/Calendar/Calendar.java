@@ -1,5 +1,6 @@
 package christmas.entity.Calendar;
 
+import christmas.config.DiscountConfig;
 import christmas.enums.MonthOfYear;
 import christmas.enums.DayOfWeek;
 import christmas.enums.Week;
