@@ -1,7 +1,7 @@
 package christmas.service;
 
 import christmas.config.DayConfig;
-import christmas.entity.Calendar.Calendar;
+import christmas.entity.Calendar;
 
 public class CalendarCreateService {
     private final Calendar calendar;

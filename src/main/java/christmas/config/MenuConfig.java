@@ -23,6 +23,10 @@ public enum MenuConfig {
         this.price = price;
     }
 
+    public int getPrice() {
+        return price;
+    }
+
     public MenuConfig getGiveaway() {
         return CHAMPAGNE;
     }

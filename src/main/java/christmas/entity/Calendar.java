@@ -1,6 +1,5 @@
-package christmas.entity.Calendar;
+package christmas.entity;
 
-import christmas.config.DiscountConfig;
 import christmas.enums.MonthOfYear;
 import christmas.enums.DayOfWeek;
 import christmas.enums.Week;
@@ -22,7 +21,7 @@ public class Calendar {
 
     public void createCalendarDay() {
         calendarDay = new HashMap<>();
-        int finalDate=month.getFinalDate();
+        int finalDate = month.getFinalDate();
         int weekIndex = firstDay.ordinal();
 
         for (int day = 1; day <= finalDate; day++) {
