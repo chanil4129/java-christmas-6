@@ -1,2 +1,4 @@
-package christmas.model;public class Badge {
+package christmas.model;
+
+public class Badge {
 }

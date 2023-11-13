@@ -14,11 +14,15 @@ public class DateOfVisit {
         this.day = day;
     }
 
+    public int getDay() {
+        return day;
+    }
+
     private void validate(MonthOfYear month, int day) {
         validateRangeOfMonth(month, day);
     }
 
-    private void validateRangeOfMonth(MonthOfYear month, int day) {
+    private void validateRangeOfMonth(MonthOfYear month, int day) throws DateOfVisitException {
         if (day < FIRST_DAY && day > month.getFinalDate()) {
             throw new DateOfVisitException();
         }

@@ -1,2 +1,4 @@
-package christmas.model;public class Discount {
+package christmas.model;
+
+public class Discount {
 }

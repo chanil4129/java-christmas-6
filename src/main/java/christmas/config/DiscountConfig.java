@@ -6,7 +6,7 @@ public enum DiscountConfig {
     WEEKDAY(2023),
     WEEKEND(2023),
     SPECIAL(1000),
-    ;
+    GIVEAWAY(Menu.getGiveaway().getPrice());
 
     private final int discountPrice;
 
