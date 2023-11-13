@@ -4,7 +4,7 @@ public enum BadgeConfig {
     STAR(5000),
     TREE(10000),
     SANTA(20000),
-    ;
+    DEFAULT(0);
 
     private final int conditionValue;
 

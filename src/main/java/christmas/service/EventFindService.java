@@ -36,6 +36,12 @@ public class EventFindService {
         return reward;
     }
 
+    public Badge getBadge() {
+        Badge badge = new Badge(getReward().getTotalReward());
+        badge.assignBadgeLevel();
+        return badge;
+    }
+
     private void applyDiscountEvent(Reward reward) {
         reward.put(DiscountConfig.DEFAULT, getDDayDiscount());
         reward.put(DiscountConfig.WEEKDAY, getWeekDayDiscount());
