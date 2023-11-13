@@ -1,8 +1,7 @@
-package christmas.entity;
+package christmas.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
 import christmas.config.ErrorConfig;
 import christmas.config.Menu;
@@ -67,27 +66,40 @@ class OrderTest {
     @DisplayName("method 기능 확인")
     @Nested
     class method {
-        private Order validOrder;
+        private Order eligibleForGiveawayOrder;
+        private Order notEligibleForGiveawayOrder;
 
         @BeforeEach
         void setValidOrder() {
             orders.put(Menu.MUSHROOM_CREAM_SOUP, 2);
-            orders.put(Menu.T_BONE_STEAK, 1);
-
-            validOrder = new Order(orders);
+            orders.put(Menu.T_BONE_STEAK, 3);
+            eligibleForGiveawayOrder = new Order(orders);
         }
 
         @Test
-        @DisplayName("주문 총액 계산")
+        @DisplayName("주문 총액 원가 계산")
         void testCalculateTotalCost() {
             int expectedCost = Menu.MUSHROOM_CREAM_SOUP.getPrice() * 2 + Menu.T_BONE_STEAK.getPrice();
-            assertThat(validOrder.getFirstCost()).isEqualTo(expectedCost);
+            int firstCost = eligibleForGiveawayOrder.getFirstCost();
+            assertThat(firstCost).isEqualTo(expectedCost);
         }
 
         @Test
-        @DisplayName("경품 수령 가능 여부")
-        void testReceivableGiveaway() {
-            assertThat(validOrder.receivableGiveaway()).isTrue();
+        @DisplayName("증정품 수령 불가능")
+        void testReceivableGiveaway_불가능() {
+            Map<Menu, Integer> nonEligibleOrders = new HashMap<>();
+            nonEligibleOrders.put(Menu.MUSHROOM_CREAM_SOUP, 1);
+            notEligibleForGiveawayOrder = new Order(nonEligibleOrders);
+
+            boolean isGiveaway = notEligibleForGiveawayOrder.receivableGiveaway();
+            assertThat(isGiveaway).isTrue();
+        }
+
+        @Test
+        @DisplayName("증정품 수령 가능")
+        void testReceivableGiveaway_가능() {
+            boolean isGiveaway = eligibleForGiveawayOrder.receivableGiveaway();
+            assertThat(isGiveaway).isTrue();
         }
     }
 }

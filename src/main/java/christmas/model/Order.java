@@ -1,4 +1,4 @@
-package christmas.entity;
+package christmas.model;
 
 import christmas.config.ErrorConfig;
 import christmas.config.GiveawayConfig;

@@ -1,7 +1,7 @@
 package christmas.config;
 
 public enum GiveawayConfig {
-    MINIMUM_PRICE(12000),
+    MINIMUM_PRICE(120000),
     NUMBER(1);
 
     private final int value;

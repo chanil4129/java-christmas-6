@@ -1,10 +1,9 @@
-package christmas.entity;
+package christmas.model;
 
 import christmas.enums.MonthOfYear;
 import christmas.enums.DayOfWeek;
 import christmas.enums.Week;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
