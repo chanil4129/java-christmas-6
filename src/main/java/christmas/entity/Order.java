@@ -1,5 +1,6 @@
 package christmas.entity;
 
+import christmas.config.ErrorConfig;
 import christmas.config.GiveawayConfig;
 import christmas.config.Menu;
 import christmas.config.MenuConfig;
@@ -12,6 +13,9 @@ public class Order {
     private final int GIVEAWAY_MINIMUM_PRICE = GiveawayConfig.MINIMUM_PRICE.getValue();
     private final int MENU_MINIMUM_NUMBER = MenuConfig.MENU_MINIMUM_NUMBER.getValue();
     private final int MENU_MAXIMUM_NUMBER = MenuConfig.MENU_MAXIMUM_NUMBER.getValue();
+    private final String NOT_NULL_ORDER_ERROR_MESSAGE = ErrorConfig.NOT_NULL_ORDER_ERROR_MESSAGE.getSubMessage();
+    private final String NOT_ZERO_ORDER_ERROR_MESSAGE = ErrorConfig.NOT_ZERO_ORDER_ERROR_MESSAGE.getSubMessage();
+    private final String RANGE_TOTAL_ORDER_ERROR_MESSAGE = ErrorConfig.RANGE_TOTAL_ORDER_ERROR_MESSAGE.getSubMessage();
     private Map<Menu, Integer> orders;
 
     public Order(Map<Menu, Integer> orders) {
@@ -36,21 +40,31 @@ public class Order {
     }
 
     private void validate(Map<Menu, Integer> orders) {
-        validateNotNull(orders);
-        validateRangeMenu(orders);
+        validateNotNullOrder(orders);
+        validateNotZeroOrder(orders);
+        validateRangeTotalOrder(orders);
     }
 
-    private void validateNotNull(Map<Menu, Integer> orders) {
+    private void validateNotNullOrder(Map<Menu, Integer> orders) throws OrderException {
         if (orders == null || orders.isEmpty()) {
-            throw new OrderException();
+            throw new OrderException(NOT_NULL_ORDER_ERROR_MESSAGE);
         }
     }
 
-    private void validateRangeMenu(Map<Menu, Integer> orders) {
+    private void validateNotZeroOrder(Map<Menu, Integer> orders) {
         orders.forEach((key, value) -> {
-            if (value < MENU_MINIMUM_NUMBER || value > MENU_MAXIMUM_NUMBER) {
-                throw new OrderException();
+            if (value == ZERO) {
+                throw new OrderException(NOT_ZERO_ORDER_ERROR_MESSAGE);
             }
         });
+    }
+
+    private void validateRangeTotalOrder(Map<Menu, Integer> orders) {
+        int menuNumber = orders.values().stream()
+                .mapToInt(Integer::intValue)
+                .sum();
+        if (menuNumber < MENU_MINIMUM_NUMBER || menuNumber > MENU_MAXIMUM_NUMBER) {
+            throw new OrderException(RANGE_TOTAL_ORDER_ERROR_MESSAGE);
+        }
     }
 }
