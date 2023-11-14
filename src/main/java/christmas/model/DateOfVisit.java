@@ -5,12 +5,11 @@ import christmas.exception.DateOfVisitException;
 
 public class DateOfVisit {
     private final int FIRST_DAY = 1;
-    private final MonthOfYear month;
+    private final MonthOfYear month = MonthOfYear.DECEMBER;
     private final int day;
 
-    public DateOfVisit(MonthOfYear month, int day) {
+    public DateOfVisit(int day) {
         validate(month, day);
-        this.month = month;
         this.day = day;
     }
 

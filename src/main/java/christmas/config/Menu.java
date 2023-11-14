@@ -35,6 +35,10 @@ public enum Menu {
         return type;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public static Menu getGiveaway() {
         return CHAMPAGNE;
     }

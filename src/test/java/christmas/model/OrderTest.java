@@ -68,7 +68,7 @@ class OrderTest {
         private static void throwOrderException(Map<Menu, Integer> orders) {
             assertThatThrownBy(() -> new Order(orders))
                     .isInstanceOf(OrderException.class)
-                    .hasMessageContaining(ErrorMessageConfig.NOT_VALIDATE_ORDER_ERROR_MESSAGE.getMessage());
+                    .hasMessageContaining(ErrorMessageConfig.NOT_VALIDATE_ORDER_ERROR_MESSAGE.getErrorMessage());
         }
     }
 

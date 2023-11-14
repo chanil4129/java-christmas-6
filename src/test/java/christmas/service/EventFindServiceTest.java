@@ -33,7 +33,7 @@ class EventFindServiceTest {
         menuOrder.put(Menu.CHOCOLATE_CAKE, 2);
         menuOrder.put(Menu.ZERO_COLA, 1);
         Order order = new Order(menuOrder);
-        DateOfVisit dateOfVisit = new DateOfVisit(MonthOfYear.DECEMBER, 3);
+        DateOfVisit dateOfVisit = new DateOfVisit(3);
         eventFindService = new EventFindService(calendar, order, dateOfVisit);
     }
 

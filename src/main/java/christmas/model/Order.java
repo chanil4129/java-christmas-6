@@ -14,10 +14,10 @@ public class Order {
     private final int GIVEAWAY_MINIMUM_PRICE = GiveawayConfig.MINIMUM_PRICE.getValue();
     private final int MENU_MINIMUM_NUMBER = MenuConfig.MENU_MINIMUM_NUMBER.getValue();
     private final int MENU_MAXIMUM_NUMBER = MenuConfig.MENU_MAXIMUM_NUMBER.getValue();
-    private final String NOT_NULL_ORDER_ERROR_MESSAGE = ErrorMessageConfig.NOT_NULL_ORDER_ERROR_MESSAGE.getSubMessage();
-    private final String NOT_ZERO_ORDER_ERROR_MESSAGE = ErrorMessageConfig.NOT_ZERO_ORDER_ERROR_MESSAGE.getSubMessage();
-    private final String RANGE_TOTAL_ORDER_ERROR_MESSAGE = ErrorMessageConfig.RANGE_TOTAL_ORDER_ERROR_MESSAGE.getSubMessage();
-    private final String ONLY_DRINK_ORDER_ERROR_MESSAGE = ErrorMessageConfig.ONLY_DRINK_ORDER_ERROR_MESSAGE.getSubMessage();
+    private final String NOT_NULL_ORDER_ERROR_MESSAGE = ErrorMessageConfig.NOT_NULL_ORDER_ERROR_MESSAGE.getMessage();
+    private final String NOT_ZERO_ORDER_ERROR_MESSAGE = ErrorMessageConfig.NOT_ZERO_ORDER_ERROR_MESSAGE.getMessage();
+    private final String RANGE_TOTAL_ORDER_ERROR_MESSAGE = ErrorMessageConfig.RANGE_TOTAL_ORDER_ERROR_MESSAGE.getMessage();
+    private final String ONLY_DRINK_ORDER_ERROR_MESSAGE = ErrorMessageConfig.ONLY_DRINK_ORDER_ERROR_MESSAGE.getMessage();
     private Map<Menu, Integer> orders;
 
     public Order(Map<Menu, Integer> orders) {
