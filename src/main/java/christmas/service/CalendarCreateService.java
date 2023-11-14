@@ -7,12 +7,16 @@ public class CalendarCreateService {
     private final Calendar calendar;
     private final DayConfig DAYCONFIG = DayConfig.DECEMBER_2023;
 
-    public CalendarCreateService(Calendar calendar) {
+    public CalendarCreateService() {
         this.calendar = new Calendar(DAYCONFIG.getMonth(), DAYCONFIG.getFirstDay());
     }
 
     public void createCalendar() {
         calendar.createCalendarDay();
         calendar.addSpecialDays(DAYCONFIG.getSpecialDays());
+    }
+
+    public Calendar getCalendar() {
+        return calendar;
     }
 }

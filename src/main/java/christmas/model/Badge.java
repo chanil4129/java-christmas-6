@@ -4,21 +4,29 @@ import christmas.config.BadgeConfig;
 
 public class Badge {
     private final int totalReward;
+    private BadgeConfig level;
 
     public Badge(int totalReward) {
         this.totalReward = totalReward;
     }
 
-    public BadgeConfig assignBadgeLevel() {
+    public void assignBadgeLevel() {
         if (totalReward >= BadgeConfig.SANTA.getConditionValue()) {
-            return BadgeConfig.SANTA;
+            level = BadgeConfig.SANTA;
+            return;
         }
         if (totalReward >= BadgeConfig.TREE.getConditionValue()) {
-            return BadgeConfig.TREE;
+            level = BadgeConfig.TREE;
+            return;
         }
         if (totalReward >= BadgeConfig.STAR.getConditionValue()) {
-            return BadgeConfig.STAR;
+            level = BadgeConfig.STAR;
+            return;
         }
-        return BadgeConfig.DEFAULT;
+        level = BadgeConfig.DEFAULT;
+    }
+
+    public BadgeConfig getLevel() {
+        return level;
     }
 }
