@@ -86,7 +86,7 @@ public class ConverterService {
     private void validateOrderNumberInteger(List<String[]> bundleMenuAndNumber) throws OrderException {
         for (String[] menuAndNumber : bundleMenuAndNumber) {
             try {
-                Integer.parseInt(menuAndNumber[MENU_INDEX]);
+                Integer.parseInt(menuAndNumber[MENU_NUMBER_INDEX]);
             } catch (NumberFormatException e) {
                 throw new OrderException(ORDER_NUMBER_INTEGER_ERROR_MESSAGE);
             }
