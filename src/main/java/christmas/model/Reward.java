@@ -8,7 +8,6 @@ import java.util.Map;
 
 public class Reward {
     private Map<DiscountConfig, Integer> reward;
-    private Badge badge;
     private int finalCost;
 
     public Reward() {

@@ -92,7 +92,7 @@ public class OutputView {
 
     private void printExpectedPaymentAfterDiscount(Reward reward) {
         System.out.println(EXPECTED_PAYMENT_AFTER_DISCOUNT_MESSAGE);
-        System.out.println(String.format(ORDER_ITEM_FORMAT, reward.getFinalCost()));
+        System.out.println(String.format(MONEY_FORMAT, reward.getFinalCost()));
     }
 
     private void printEventBadge(Reward reward) {

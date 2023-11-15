@@ -23,9 +23,6 @@ public class EventFindService {
     private Order order;
     private DateOfVisit dateOfVisit;
 
-    public EventFindService() {
-    }
-
     public void applyEvent(Calendar calendar, Order order, DateOfVisit dateOfVisit) {
         this.calendar = calendar;
         this.order = order;
