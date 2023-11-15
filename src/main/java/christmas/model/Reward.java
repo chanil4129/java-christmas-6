@@ -1,11 +1,14 @@
 package christmas.model;
 
 import christmas.config.DiscountConfig;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Reward {
     private Map<DiscountConfig, Integer> reward;
+    private Badge badge;
+    private int finalCost;
 
     public Reward() {
         this.reward = new HashMap<>();
@@ -19,5 +22,23 @@ public class Reward {
         return reward.entrySet().stream()
                 .mapToInt((entry) -> entry.getValue())
                 .sum();
+    }
+
+    public Map<DiscountConfig, Integer> getReward() {
+        return Collections.unmodifiableMap(reward);
+    }
+
+    public Badge getBadge() {
+        Badge result = new Badge(getTotalReward());
+        result.assignBadgeLevel();
+        return result;
+    }
+
+    public void calculateFinalCost(int firstCost) {
+        finalCost = firstCost - getTotalReward();
+    }
+
+    public int getFinalCost() {
+        return finalCost;
     }
 }

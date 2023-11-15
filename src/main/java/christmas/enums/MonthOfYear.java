@@ -15,7 +15,7 @@ public enum MonthOfYear {
         return finalDate;
     }
 
-    public int getMonth() {
+    public int getNumberOfMonth() {
         return month;
     }
 }

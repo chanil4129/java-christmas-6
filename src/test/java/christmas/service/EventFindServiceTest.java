@@ -1,13 +1,9 @@
 package christmas.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 import christmas.config.BadgeConfig;
-import christmas.config.DecemberSpecialDays2023Config;
 import christmas.config.Menu;
-import christmas.enums.DayOfWeek;
-import christmas.enums.MonthOfYear;
 import christmas.model.Badge;
 import christmas.model.Calendar;
 import christmas.model.DateOfVisit;
@@ -34,13 +30,14 @@ class EventFindServiceTest {
         menuOrder.put(Menu.ZERO_COLA, 1);
         Order order = new Order(menuOrder);
         DateOfVisit dateOfVisit = new DateOfVisit(3);
-        eventFindService = new EventFindService(calendar, order, dateOfVisit);
+        eventFindService = new EventFindService();
+        eventFindService.applyEvent(calendar, order, dateOfVisit);
     }
 
     @DisplayName("보상이 얼마인지 확인한다.")
     @Test
     public void getReward() {
-        Reward reward = eventFindService.getReward();
+        Reward reward = eventFindService.calculateReward();
 
         assertThat(reward.getTotalReward()).isEqualTo(31246);
     }
@@ -48,7 +45,8 @@ class EventFindServiceTest {
     @DisplayName("배지 등급을 확인한다.")
     @Test
     public void getBadge() {
-        Badge badge = eventFindService.getBadge();
+        Reward reward = eventFindService.calculateReward();
+        Badge badge = reward.getBadge();
 
         assertThat(badge.getLevel()).isEqualTo(BadgeConfig.SANTA);
     }

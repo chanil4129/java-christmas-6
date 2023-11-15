@@ -4,7 +4,6 @@ import christmas.config.DiscountConfig;
 import christmas.config.Menu;
 import christmas.config.MenuConfig;
 import christmas.enums.MenuType;
-import christmas.model.Badge;
 import christmas.model.Calendar;
 import christmas.model.DateOfVisit;
 import christmas.model.Order;
@@ -18,28 +17,26 @@ public class EventFindService {
     private final int WEEKEND_DISCOUNT = DiscountConfig.WEEKEND.getDiscountPrice();
     private final int SPECIAL_DISCOUNT = DiscountConfig.SPECIAL.getDiscountPrice();
     private final int MINIMUM_ORDER_AMOUNT = MenuConfig.MINIMUM_ORDER_AMOUNT.getValue();
-    private final Calendar calendar;
-    private final Order order;
-    private final DateOfVisit dateOfVisit;
+    private Calendar calendar;
+    private Order order;
+    private DateOfVisit dateOfVisit;
 
-    public EventFindService(Calendar calendar, Order order, DateOfVisit dateOfVisit) {
+    public EventFindService() {
+    }
+
+    public void applyEvent(Calendar calendar, Order order, DateOfVisit dateOfVisit) {
         this.calendar = calendar;
         this.order = order;
         this.dateOfVisit = dateOfVisit;
     }
 
-    public Reward getReward() {
+    public Reward calculateReward() {
         Reward reward = new Reward();
         if (order.getFirstCost() >= MINIMUM_ORDER_AMOUNT) {
             applyDiscountEvent(reward);
         }
+        reward.calculateFinalCost(order.getFirstCost());
         return reward;
-    }
-
-    public Badge getBadge() {
-        Badge badge = new Badge(getReward().getTotalReward());
-        badge.assignBadgeLevel();
-        return badge;
     }
 
     private void applyDiscountEvent(Reward reward) {

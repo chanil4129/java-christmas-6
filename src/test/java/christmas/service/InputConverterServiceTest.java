@@ -2,7 +2,6 @@ package christmas.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.assertj.core.api.Assertions.in;
 import static org.junit.jupiter.api.Assertions.*;
 
 import christmas.config.ErrorMessageConfig;
@@ -20,14 +19,14 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-class ConverterServiceTest {
-    private ConverterService converterService;
+class InputConverterServiceTest {
+    private InputConverterService inputConverterService;
     private DateOfVisitDto dateOfVisitDto;
     private OrderDto orderDto;
 
     @BeforeEach
     void setUp() {
-        converterService = new ConverterService();
+        inputConverterService = new InputConverterService();
     }
 
     @DisplayName("방문 날짜 converter")
@@ -37,7 +36,7 @@ class ConverterServiceTest {
         @Test
         void convert_DateOfVisit() {
             dateOfVisitDto = new DateOfVisitDto("3");
-            assertDoesNotThrow(() -> converterService.convertDtoToInt(dateOfVisitDto));
+            assertDoesNotThrow(() -> inputConverterService.convertDtoToInt(dateOfVisitDto));
         }
 
         @DisplayName("숫자가 아니면 예외가 발생한다.")
@@ -48,7 +47,7 @@ class ConverterServiceTest {
         })
         void converter_DateOfVisit_예외_발생(String input) {
             dateOfVisitDto = new DateOfVisitDto(input);
-            assertThatThrownBy(() -> converterService.convertDtoToInt(dateOfVisitDto))
+            assertThatThrownBy(() -> inputConverterService.convertDtoToInt(dateOfVisitDto))
                     .isInstanceOf(DateOfVisitException.class)
                     .hasMessageContaining(ErrorMessageConfig.NOT_VALID_DATE_OF_VISIT_ERROR_MESSAGE.getErrorMessage());
         }
@@ -65,7 +64,7 @@ class ConverterServiceTest {
         })
         void convert_order(String input, Menu menu, int expectedCount) {
             orderDto = new OrderDto(input);
-            Map<Menu, Integer> result = converterService.convertDtoToOrder(orderDto);
+            Map<Menu, Integer> result = inputConverterService.convertDtoToOrder(orderDto);
             assertThat(result).containsKey(menu);
             assertThat(result.get(menu)).isEqualTo(expectedCount);
         }
@@ -75,7 +74,7 @@ class ConverterServiceTest {
         void convert_complex_order() {
             String input = "양송이수프-1,타파스-2,제로콜라-2";
             OrderDto orderDto = new OrderDto(input);
-            Map<Menu, Integer> result = converterService.convertDtoToOrder(orderDto);
+            Map<Menu, Integer> result = inputConverterService.convertDtoToOrder(orderDto);
 
             // 각 메뉴에 대한 검증
             assertThat(result).containsKeys(Menu.MUSHROOM_CREAM_SOUP, Menu.TAPAS, Menu.ZERO_COLA);
@@ -97,7 +96,7 @@ class ConverterServiceTest {
         })
         void convert_order_잘못된_형식_예외(String input) {
             OrderDto orderDto = new OrderDto(input);
-            assertThatThrownBy(() -> converterService.convertDtoToOrder(orderDto))
+            assertThatThrownBy(() -> inputConverterService.convertDtoToOrder(orderDto))
                     .isInstanceOf(OrderException.class)
                     .hasMessageContaining(ErrorMessageConfig.NOT_VALIDATE_ORDER_ERROR_MESSAGE.getErrorMessage());
         }

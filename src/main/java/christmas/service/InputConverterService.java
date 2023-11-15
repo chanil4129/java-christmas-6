@@ -7,14 +7,13 @@ import christmas.dto.OrderDto;
 import christmas.exception.DateOfVisitException;
 import christmas.exception.OrderException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-public class ConverterService {
+public class InputConverterService {
     private final int MENU_AND_NUMBER = 2;
     private final int MENU_INDEX = 0;
     private final int MENU_NUMBER_INDEX = 1;
