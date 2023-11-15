@@ -5,7 +5,7 @@ import christmas.config.Menu;
 import christmas.config.MenuConfig;
 import christmas.enums.MenuType;
 import christmas.model.Calendar;
-import christmas.model.DateOfVisit;
+import christmas.model.vo.DateOfVisit;
 import christmas.model.Order;
 import christmas.model.Reward;
 
@@ -17,6 +17,8 @@ public class EventFindService {
     private final int WEEKEND_DISCOUNT = DiscountConfig.WEEKEND.getDiscountPrice();
     private final int SPECIAL_DISCOUNT = DiscountConfig.SPECIAL.getDiscountPrice();
     private final int MINIMUM_ORDER_AMOUNT = MenuConfig.MINIMUM_ORDER_AMOUNT.getValue();
+    private final int NO_DISCOUNT = 0;
+
     private Calendar calendar;
     private Order order;
     private DateOfVisit dateOfVisit;
@@ -55,7 +57,7 @@ public class EventFindService {
 
     private int getWeekDayDiscount() {
         if (!calendar.isWeekDay(dateOfVisit.getDay())) {
-            return 0;
+            return NO_DISCOUNT;
         }
 
         // 디저트 메뉴 1개당 WEEKDAY_DISCOUNT 만큼 할인
@@ -67,7 +69,7 @@ public class EventFindService {
 
     private int getWeekendDiscount() {
         if (calendar.isWeekDay(dateOfVisit.getDay())) {
-            return 0;
+            return NO_DISCOUNT;
         }
 
         // 메인 메뉴 1개당 WEEKEND_DISCOUNT 만큼 할인
@@ -79,7 +81,7 @@ public class EventFindService {
 
     private int getSpecialDayDiscount() {
         if (!calendar.isSpecialDay(dateOfVisit.getDay())) {
-            return 0;
+            return NO_DISCOUNT;
         }
 
         return SPECIAL_DISCOUNT;
@@ -87,7 +89,7 @@ public class EventFindService {
 
     private int getGiveawayReward() {
         if (!order.receivableGiveaway()) {
-            return 0;
+            return NO_DISCOUNT;
         }
 
         return Menu.getGiveaway().getPrice();

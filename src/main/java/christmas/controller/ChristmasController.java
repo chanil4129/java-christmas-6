@@ -5,7 +5,7 @@ import christmas.dto.DateOfVisitDto;
 import christmas.dto.OrderDto;
 import christmas.exception.DateOfVisitException;
 import christmas.exception.OrderException;
-import christmas.model.DateOfVisit;
+import christmas.model.vo.DateOfVisit;
 import christmas.model.Order;
 import christmas.model.Reward;
 import christmas.service.CalendarCreateService;

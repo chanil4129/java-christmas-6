@@ -17,7 +17,7 @@ public class InputConverterService {
     private final int MENU_AND_NUMBER = 2;
     private final int MENU_INDEX = 0;
     private final int MENU_NUMBER_INDEX = 1;
-    private final int MENU_NUMBER_DEFAULT_IN_MAP = 0;
+    
     private final String COMMA = ",";
     private final String HYPHEN = "-";
     private final String ORDER_FORMAT_ERROR_MESSAGE = ErrorMessageConfig.ORDER_FORMAT_ERROR_MESSAGE.getMessage();

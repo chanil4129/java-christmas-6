@@ -1,6 +1,6 @@
 package christmas.service;
 
-import christmas.model.DateOfVisit;
+import christmas.model.vo.DateOfVisit;
 
 public class DateOfVisitCreateService {
     private int date;

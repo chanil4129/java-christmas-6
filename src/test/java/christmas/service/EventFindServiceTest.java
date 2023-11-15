@@ -4,9 +4,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import christmas.config.BadgeConfig;
 import christmas.config.Menu;
-import christmas.model.Badge;
+import christmas.model.vo.Badge;
 import christmas.model.Calendar;
-import christmas.model.DateOfVisit;
+import christmas.model.vo.DateOfVisit;
 import christmas.model.Order;
 import christmas.model.Reward;
 import java.util.HashMap;
