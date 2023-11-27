@@ -1,6 +1,7 @@
 package christmas.domain.order;
 
 import christmas.domain.order.config.Menu;
+import christmas.domain.order.config.Menu.MenuType;
 import christmas.domain.order.config.MenuConfig;
 import christmas.exception.OrderException;
 import java.util.EnumMap;
@@ -17,6 +18,20 @@ public class Order {
     public int calculateTotalFirstCost() {
         return this.orders.entrySet().stream()
                 .mapToInt(entry -> entry.getKey().getPrice() * entry.getValue())
+                .sum();
+    }
+
+    public int getDesertMenuNumber() {
+        return this.orders.entrySet().stream()
+                .filter(entry -> entry.getKey().getType() == MenuType.DESSERT)
+                .mapToInt(entry -> entry.getValue())
+                .sum();
+    }
+
+    public int getMainMenuNumber() {
+        return this.orders.entrySet().stream()
+                .filter(entry -> entry.getKey().getType() == MenuType.MAIN)
+                .mapToInt(entry -> entry.getValue())
                 .sum();
     }
 
