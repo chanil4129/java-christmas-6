@@ -1,5 +1,6 @@
 package christmas.service;
 
+import christmas.domain.PrintRewardFormat;
 import christmas.domain.calendar.Calendar;
 import christmas.domain.event.DiscountEvent;
 import christmas.domain.event.config.BadgeConfig;
@@ -18,12 +19,14 @@ public class EventService {
         this.order = order;
     }
 
-    public void calculateEvent() {
+    public PrintRewardFormat calculateEvent() {
         if (isValidateEvent()) {
             DiscountEvent discountEvent = new DiscountEvent(this.calendar, this.order);
             Map<Menu, Integer> giveaways = getGiveaway();
             String level = BadgeConfig.calculateLevel(discountEvent.calculateTotalRewardCost());
+            return new PrintRewardFormat(discountEvent, giveaways, level);
         }
+        return new PrintRewardFormat();
     }
 
     public boolean isValidateEvent() {
