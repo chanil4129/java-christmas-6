@@ -22,6 +22,10 @@ public class Calendar {
         this.dateOfVisit = dateOfVisit;
     }
 
+    public int getDateOfVisit() {
+        return this.dateOfVisit;
+    }
+
     public boolean isWeekday() {
         return DayOfWeekConfig.getWeekInfo(this.calendar) == WeekInfo.WEEKDAY;
     }
